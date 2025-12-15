@@ -1,4 +1,7 @@
 #include <Arduino.h>
+#include <WiFi.h>
+#include "esp_wifi.h"
+#include <MD_MAX72xx.h>
 
 // Connections for ESP32 hardware SPI are:
 // Vcc       5V
@@ -6,8 +9,6 @@
 // DIN       VSPI_MOSI
 // CS or LD  VSPI_CS
 // CLK       VSPI_SCK
-
-#include <MD_MAX72xx.h>
 
 #define PRINT_CALLBACK  0
 #define DEBUG 0
@@ -167,7 +168,11 @@ void scrollText(void)
 
 void setup(void)
 {
-  Serial.begin(115200);
+  // modem sleep
+  WiFi.mode(WIFI_MODE_STA);
+  esp_wifi_set_ps(WIFI_PS_MIN_MODEM);
+
+  // Serial.begin(115200);
 
   mx.begin();
   mx.setShiftDataInCallback(scrollDataSource);
