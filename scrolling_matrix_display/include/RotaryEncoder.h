@@ -10,14 +10,18 @@
 #define ROTARY_ENCODER_STEPS 4
 
 class RotaryEncoder {
-public:
+  public:
     RotaryEncoder();
     void setup();
     void iterate();
+    bool isSetMode();
+    int16_t getEncoderValue();
 
-private:
+  private:
     void rotary_onButtonClick();
     static void IRAM_ATTR readEncoderISR();
     
     static AiEsp32RotaryEncoder rotaryEncoder;
+    static bool _set_mode;
+    static int16_t _encoderValue;
 };

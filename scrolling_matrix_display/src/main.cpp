@@ -14,6 +14,7 @@
 Display display(DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 RotaryEncoder rotaryEncoder;
 RealTimeClock rtc;
+int16_t lastEncoderValue = 0;
 
 void setup(void)
 {
@@ -26,7 +27,16 @@ void setup(void)
 void loop(void)
 {
   rotaryEncoder.iterate();
+  bool set_mode = rotaryEncoder.isSetMode();
+  if (set_mode) {
+    int16_t encoderValue = rotaryEncoder.getEncoderValue();
+    if (encoderValue != lastEncoderValue) {
+      rtc.adjustTime(encoderValue - lastEncoderValue);
+      lastEncoderValue = encoderValue;
+    }
+  }
+  display.iterate(rtc.getNow(), set_mode);
   rtc.iterate();
-  display.iterate(rtc.getNow());
+  delay(10);
 }
 

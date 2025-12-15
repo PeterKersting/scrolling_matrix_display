@@ -7,6 +7,8 @@ AiEsp32RotaryEncoder RotaryEncoder::rotaryEncoder(
     ROTARY_ENCODER_BUTTON_PIN, 
     ROTARY_ENCODER_VCC_PIN, 
     ROTARY_ENCODER_STEPS);
+bool RotaryEncoder::_set_mode = false;
+int16_t RotaryEncoder::_encoderValue = 0;
 
 RotaryEncoder::RotaryEncoder() {
 }
@@ -19,6 +21,7 @@ void RotaryEncoder::rotary_onButtonClick()
         return;
     }
     lastTimePressed = millis();
+    _set_mode = !_set_mode;
     Serial.print(" button pressed ");
     Serial.print(millis());
     Serial.println(" milliseconds after restart");
@@ -42,12 +45,20 @@ void RotaryEncoder::iterate()
 {
     if (rotaryEncoder.encoderChanged())
     {
+        _encoderValue = rotaryEncoder.readEncoder();
         Serial.print("Value: ");
-        Serial.println(rotaryEncoder.readEncoder());
+        Serial.println(_encoderValue);
     }
     if (rotaryEncoder.isEncoderButtonClicked())
     {
         rotary_onButtonClick();
     }
-    delay(10);
+}
+
+bool RotaryEncoder::isSetMode() {
+    return _set_mode;
+}
+
+int16_t RotaryEncoder::getEncoderValue() {
+    return _encoderValue;
 }

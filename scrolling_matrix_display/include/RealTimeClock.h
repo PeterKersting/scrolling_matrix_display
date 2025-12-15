@@ -8,6 +8,7 @@ public:
     void setup();
     void iterate();
     DateTime getNow();
+    void adjustTime(int16_t minutes);
 
 private:
     RTC_DS3231 rtc;

@@ -30,24 +30,27 @@ void Display::setup()
     setMessage("Hello World!");
 }
 
-void Display::iterate(DateTime now)
+void Display::iterate(DateTime now, bool set_mode)
 {
     bool scrollMode = (digitalRead(DISPLAY_MODE_PIN) == LOW);
-    // if (scrollMode != _last_display_mode) {
-    //     _last_display_mode = scrollMode;
-    //     if (scrollMode) {
-    //         setMessage(_curMessage);
-    //         Serial.println("Switched to SCROLL mode");
-    //     }
-    // }
 
     if (scrollMode) { 
-        scrollText();
+        scrollText(); 
     } 
     else {
-        char time_str[6];
-        sprintf(time_str, "%02d:%02d", now.hour(), now.minute());
-        printText(0, _max_devices - 1, time_str);
+        if (set_mode) {
+            if ((millis() % 500) < 250) {
+                _mx.clear();
+            } else {
+                char time_str[6];
+                sprintf(time_str, "%02d:%02d", now.hour(), now.minute());
+                printText(0, _max_devices - 1, time_str);
+            }
+        } else {
+            char time_str[6];
+            sprintf(time_str, "%02d:%02d", now.hour(), now.minute());
+            printText(0, _max_devices - 1, time_str);
+        }
     }
 }
 

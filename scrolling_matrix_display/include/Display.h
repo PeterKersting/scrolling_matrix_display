@@ -8,7 +8,7 @@ class Display
 public:
   Display(uint8_t data_pin, uint8_t clk_pin, uint8_t cs_pin, uint8_t max_devices);
   void setup();
-  void iterate(DateTime now);
+  void iterate(DateTime now, bool set_mode);
   void setMessage(const char *message);
 
 private:

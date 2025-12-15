@@ -49,3 +49,7 @@ void RealTimeClock::iterate() {
 DateTime RealTimeClock::getNow() {
     return rtc.now();
 }
+
+void RealTimeClock::adjustTime(int16_t minutes) {
+    rtc.adjust(rtc.now() + TimeSpan(minutes * 60));
+}
