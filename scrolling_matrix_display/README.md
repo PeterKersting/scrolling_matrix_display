@@ -40,6 +40,8 @@
 | VCC    | VCC    |
 | GND    | GND    |
 
+Display Mode select pin: 27
+
 
 ## References
 - https://www.makerguides.com/esp32-and-max7219-matrix-display/

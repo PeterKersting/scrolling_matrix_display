@@ -25,8 +25,8 @@ void setup(void)
 
 void loop(void)
 {
-  display.iterate();
   rotaryEncoder.iterate();
   rtc.iterate();
+  display.iterate(rtc.getNow());
 }
 
