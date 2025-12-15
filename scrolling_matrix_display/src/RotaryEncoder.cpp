@@ -37,7 +37,7 @@ void RotaryEncoder::setup()
     // Initialize left encoder
     RotaryEncoder::rotaryEncoder.begin();
     RotaryEncoder::rotaryEncoder.setup([]() { RotaryEncoder::readEncoderISR(); });
-    RotaryEncoder::rotaryEncoder.setBoundaries(0, 1000, false);
+    RotaryEncoder::rotaryEncoder.setBoundaries(-10000, 10000, false);
     RotaryEncoder::rotaryEncoder.setAcceleration(250);
 }
 
@@ -46,8 +46,6 @@ void RotaryEncoder::iterate()
     if (rotaryEncoder.encoderChanged())
     {
         _encoderValue = rotaryEncoder.readEncoder();
-        Serial.print("Value: ");
-        Serial.println(_encoderValue);
     }
     if (rotaryEncoder.isEncoderButtonClicked())
     {

@@ -43,12 +43,12 @@ void Display::iterate(DateTime now, bool set_mode)
                 _mx.clear();
             } else {
                 char time_str[6];
-                sprintf(time_str, "%02d:%02d", now.hour(), now.minute());
+                sprintf(time_str, "%02d%02d", now.hour(), now.minute());
                 printText(0, _max_devices - 1, time_str);
             }
         } else {
             char time_str[6];
-            sprintf(time_str, "%02d:%02d", now.hour(), now.minute());
+            sprintf(time_str, "%02d%02d", now.hour(), now.minute());
             printText(0, _max_devices - 1, time_str);
         }
     }
