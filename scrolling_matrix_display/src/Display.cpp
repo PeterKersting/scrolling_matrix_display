@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <RTClib.h>
 #include "Display.h"
-#include "Display_Font.h"
+#include "NarrowFont.h"
 
 // Static member initialization
 Display* Display::_instance = nullptr;
@@ -24,6 +24,7 @@ void Display::setup()
     _mx.begin();
     _mx.setShiftDataInCallback(scrollDataSource);
     _mx.setShiftDataOutCallback(scrollDataSink);
+    _mx.setFont(_font);
     
     pinMode(DISPLAY_MODE_PIN, INPUT_PULLUP);
     setMessage("Hello World!");
