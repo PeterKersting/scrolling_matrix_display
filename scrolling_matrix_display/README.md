@@ -10,8 +10,10 @@
 - Battery CS2032
 
 ### Software
- - Pio in VS Code
- - Library MD_MAX72XX
+ - PlatformIO in VS Code https://docs.platformio.org/
+ - MD_MAX72XX https://github.com/MajicDesigns/MD_MAX72XX
+ - Ai ESP32 RotaryEncoder https://github.com/igorantolic/ai-esp32-rotary-encoder
+ - RTClib https://github.com/adafruit/RTClib
 
 ## Pinning
 | ESP32	 | MAX7219 Module |
@@ -32,8 +34,8 @@
 
 | ESP32  | HW-040 |
 |--------|--------|
-| GPIO14 | CLK    |
-| GPIO27 | DT     |
+| GPIO16 | CLK    |
+| GPIO19 | DT     |
 | GPIO26 | SW     |
 | VCC    | VCC    |
 | GND    | GND    |

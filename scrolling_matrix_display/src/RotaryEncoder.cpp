@@ -42,11 +42,12 @@ void RotaryEncoder::iterate()
 {
     if (rotaryEncoder.encoderChanged())
     {
-        Serial.print("Left Value: ");
+        Serial.print("Value: ");
         Serial.println(rotaryEncoder.readEncoder());
     }
     if (rotaryEncoder.isEncoderButtonClicked())
     {
         rotary_onButtonClick();
     }
+    delay(10);
 }
