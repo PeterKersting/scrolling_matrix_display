@@ -31,7 +31,7 @@ void loop(void)
   if (set_mode) {
     int16_t encoderValue = rotaryEncoder.getEncoderValue();
     if (encoderValue != lastEncoderValue) {
-      rtc.adjustTime(encoderValue - lastEncoderValue);
+      rtc.adjustTime(lastEncoderValue - encoderValue);
       lastEncoderValue = encoderValue;
     }
   }
