@@ -2,6 +2,7 @@
 #include <RTClib.h>
 #include "Display.h"
 #include "NarrowFont.h"
+#include "WelcomeMessage.h"
 
 // Static member initialization
 Display* Display::_instance = nullptr;
@@ -27,7 +28,7 @@ void Display::setup()
     _mx.setFont(_font);
     
     pinMode(DISPLAY_MODE_PIN, INPUT_PULLUP);
-    setMessage("Hello World!");
+    setMessage(WELCOME_MESSAGE);
 }
 
 void Display::iterate(DateTime now, bool set_mode)
